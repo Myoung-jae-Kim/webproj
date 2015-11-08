@@ -1,0 +1,23 @@
+{
+  "name": "webterm_P",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "bourbon": "~4.2.6",
+    "font-awesome": "fontawesome#~4.4.0"
+  }
+}
