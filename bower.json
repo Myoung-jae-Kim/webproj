@@ -18,6 +18,8 @@
   "dependencies": {
     "bootstrap": "~3.3.5",
     "bourbon": "~4.2.6",
-    "font-awesome": "fontawesome#~4.4.0"
+    "font-awesome": "fontawesome#~4.4.0",
+    "lodash": "~3.10.1",
+    "moment": "momentjs#~2.10.6"
   }
 }

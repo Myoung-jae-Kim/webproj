@@ -1,8 +1,8 @@
 module.exports = function(app, passport) {
   app.post('/signin', passport.authenticate('local-signin', {
-    successRedirect : '/Survey',
-    failureRedirect : 'signin',
-    faulureFlash : true
+    successRedirect : '/Survey', // redirect to the secure profile section
+    failureRedirect : 'signin', // redirect back to the signup page if there is an error
+    faulureFlash : true // allow flash messages
   }));
 
   app.get('/auth/facebook',

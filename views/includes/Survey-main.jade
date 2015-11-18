@@ -1,34 +1,44 @@
-form.form-inline(action='/Survey', method='POST', class='Survey')
+form#form-task.form-inline(class='lists')
   .form
     .main
-      input(type='text', id='task', name='task', placeholder='설문조사 내용은 뭐에요?')
+      input(type='text', id='content', name='content', placeholder='설문 주제가 무엇인가요?')
     .sub
       .form-group
-        input.form-control(type='text', id='category', name='category', placeholder='분류')
+        select.form-control(name='category')
+          option(value='개인') 개인
+          option(value='가족') 가족
+          option(value='업무') 업무
+          option(value='기타') 기타
       .form-group
         select.form-control(name='priority')
           option(value='1') 중요
           option(value='2', selected) 보통
           option(value='3') 사소
-      .form-group
-        input.form-control(type='date', id='deadline', name='deadline')
     .actions
-      button.btn.btn-primary.btn-lg.btn-block(type='submit') 저장
-      
+      button#post-task.btn.btn-primary.btn-lg.btn-block(type='button') 저장
+
 ul.tasks
-  each task in tasks
-    li.task(data-id='#{task._id}')
-      span.check
-      span.content= task.content
-      if task.category
-        span.label.label-default.category= task.category
-      span.priority(class='p#{task.priority}')
-        case task.priority
-          when 1
-            | 사소
-          when 2
-            | 보통
-          when 3
-            | 중요
-      if task.deadline
-        span.deadline= moment(task.deadline).format('YYYY-MM-DD')
+
+.no-task 
+  .alert.alert-info Task가 없습니다.
+script#task-template(type='text/template').
+  <li class='task <%= doneStr %>' data-id='<%= id %>'>
+    <span class='check'>
+      <i class='fa fa-check fa-lg'></i>
+    </span>
+    <span class='content'><%=content %></span>
+    <% if (category) { %>
+      <span class='label label-default category'> 
+        <%= category %>
+      </span>
+    <% } %>
+    <span class='priority p<%= priority %>'>
+      <%= (priority === 1) ? "중요" : ((priority === 3) ? "사소": "보통") %>
+    </span>
+    <a href='#' class='remove'><i class='fa fa-trash-o'></i></a>
+  </li>
+            
+script.
+  $(function() {
+    var list = new TaskController();    
+  });

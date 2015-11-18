@@ -1,11 +1,15 @@
 @import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
 @import "./includes/Survey";
 @import "./includes/signin";
+@import "./includes/spinner";
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin-top: 50px;
   padding-top: 1em;
+  & > .main-content {
+    min-height: 400px;
+  }
 }
 a {
   color: #00B7FF
@@ -13,7 +17,8 @@ a {
 
 .jumbotron {
   margin-top: -1em;
-//  background: url('/images/bg.jpg') no-repeat left top;
+  background: url('/images/bg.jpg') no-repeat left top;
+  background: no-repeat left top;
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;

@@ -6,22 +6,23 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/')
+      a.navbar-brand(href='/') 
         i.fa.fa-home
-      #navbar.collapse.navbar-collapse
-        ul.nav.navbar-nav
+    #navbar.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          a(href='/survey') Survey List
+        li
+          a(href='/users') Users
+      ul.nav.navbar-nav.navbar-right
+        if (currentUser) 
           li
-            a(href='/Survey') Survey List
+            a(href='/users/#{currentUser._id}') Profile
           li
-            a(href='/users') Users
-        ul.nav.navbar-nav.navbar-right
-          if (currentUser)
-            li
-              a(href='/users/#{currentUser._id}') profile
-            li
-              a(href='/signout') Signout
-          else
-            li
-              a(href='/signin') Signin
-            li
-              a(href='/users/new') Signup
+            a(href='/signout') Signout
+        else
+          li
+            a(href='/signin') Signin
+          li
+            a(href='/users/new') Signup
+          

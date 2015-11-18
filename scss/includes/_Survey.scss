@@ -1,4 +1,4 @@
-form.Survey {
+form.survey {
   width: 100%;
   margin: 0 0 1em 0;
   padding: 1em;
@@ -36,6 +36,9 @@ form.Survey {
       border-radius: 1em;
       border: 1px solid #2c9cd2;
       vertical-align: bottom;
+      line-height: 2em;
+      text-align: center;
+      color: #fff;
     }
     .content {
       font-size: 1.1em;
@@ -46,6 +49,15 @@ form.Survey {
       float: right;
       min-width: 5em;
       font-size: 0.9em;
+    }
+    .remove {
+      float: right;
+      color: rgb(184, 51, 9);
+      padding: 0 1em;
+      display: none;
+    }
+    &:hover .remove {
+      display: block;
     }
     .priority {
       font-size: 0.8em;
@@ -64,15 +76,22 @@ form.Survey {
         background-color: #a51e23;
       }
     }
-    .deadline {
-      color: #ccc;
-      font-size: 0.9em;
+
+    &.done {
+      background-color: #eee;
+      .check {
+        color: #2c9cd2;
+      }
+
+      span {
+        text-decoration: line-through;
+      }
     }
   }
 }
 
 .side {
-  .section {
+  section {
     background: #888;
     width: 100%;
     color: #fff;
@@ -108,6 +127,24 @@ form.Survey {
 
     a:hover, a.selected:hover {
       background-color: #337AB7;
+    }
+  }
+}
+
+#main {
+  ul.lists {
+    display: block;
+  }
+  .no-list {
+    display: none;
+  }
+
+  &.no-list {
+    ul.lists {
+      display: none;
+    }
+    .no-list {
+      display: block;
     }
   }
 }

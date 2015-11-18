@@ -11,8 +11,11 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var configAuth = require('./config/auth');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./routes/index'),
+    users = require('./routes/users'),
+    survey = require('./routes/Survey');
+//    lists = require('./routes/lists');
+
 var routeAuth = require('./routes/auth');
 
 var app = express();
