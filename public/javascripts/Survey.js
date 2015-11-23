@@ -1,7 +1,7 @@
-/*global $:false*/
-/*global _:false*/
-/*jslint bowerser:true*/
-var SurveyListController = function () {
+/*global $:false */
+/*global _:false */
+/*jslint browser:true, devel: true */
+var TaskController = function () {
   function setAjaxHandler() {
     $( document ).ajaxStart(function() {
       $("#main").addClass("loading");
@@ -102,6 +102,7 @@ var SurveyListController = function () {
     if (!task) {
       return;
     }
+    var self = this;
     $.ajax({
       url: '/tasks/' + task.id,
       method: 'PUT',
@@ -111,7 +112,7 @@ var SurveyListController = function () {
       },
       success: function(data) {
         task.done = data.done;
-        task.render();
+        self.render();
       }
     });
   };
@@ -131,21 +132,22 @@ var SurveyListController = function () {
       if (!task) {
         return;
       }
+      var self = this;
       if (confirm('정말로 삭제하시겠습니까?')) {
         $.ajax({
           url: '/tasks/' + task.id,
           method: 'DELETE',
           dataType: 'json',
           success: function(data) {
-            _.reject(self.tasks, function(t) {
+            self.tasks =_.reject(self.tasks, function(t) {
               return t.id === task.id;
             });
             var el = $(e.currentTarget).closest('li');
             el.remove();
           }
-        })
+        });
       }
     };
-  
+
   return Constructor;
 } ();
