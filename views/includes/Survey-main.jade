@@ -17,12 +17,12 @@ form#form-task.form-inline(class='lists')
     .actions
       button#post-task.btn.btn-primary.btn-lg.btn-block(type='button') 저장
 
-ul.tasks
+ul.lists
 
-.no-task 
-  .alert.alert-info Task가 없습니다.
+.no-list
+  .alert.alert-info List가 없습니다.
 script#task-template(type='text/template').
-  <li class='task <%= doneStr %>' data-id='<%= id %>'>
+  <li class='list <%= doneStr %>' data-id='<%= id %>'>
     <span class='check'>
       <i class='fa fa-check fa-lg'></i>
     </span>

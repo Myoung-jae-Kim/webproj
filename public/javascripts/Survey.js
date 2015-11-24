@@ -1,7 +1,7 @@
 /*global $:false */
 /*global _:false */
 /*jslint browser:true, devel: true */
-var TaskController = function () {
+var TaskController = function() {
   function setAjaxHandler() {
     $( document ).ajaxStart(function() {
       $("#main").addClass("loading");
@@ -11,7 +11,7 @@ var TaskController = function () {
   }
 
   function checked(type, value) {
-    var e = $("." + type + ".option[data-value='" + value + "']");
+    var e = $("." + type + " .option[data-value='" + value + "']");
     return e.hasClass('selected');
   }
 
@@ -20,7 +20,7 @@ var TaskController = function () {
     setAjaxHandler();
     this.taskTemplate = _.template($("#task-template").html());
     this.load();
-    $("#post-task").click(function () {
+    $("#post-task").click(function() {
       self.postTask();
     }.bind(this));
     $("section.options a.option")
@@ -46,12 +46,10 @@ var TaskController = function () {
     if (!checked('done', task.done)) {
       return false;
     }
-
     if (!checked('priority', task.priority)) {
       return false;
     }
-
-    if(_.includes(['개인', '가족', '업무'], task.category)) {
+    if (_.includes(['개인', '가족', '업무'], task.category)) {
       if (!checked('category', task.category)) {
         return false;
       }
@@ -63,7 +61,7 @@ var TaskController = function () {
 
   Constructor.prototype.load = function() {
     var self = this;
-    $.getJSON("/tasks", function(data) {
+    $.getJSON("/lists", function(data) {
       self.tasks = data;
       self.render();
       self.clearForm();
@@ -87,14 +85,15 @@ var TaskController = function () {
 
   Constructor.prototype.clearForm = function() {
     $("#form-task input").val("");
-    $("#form-task select").val("2");
+    $("#form-task select[name='category']").val("개인");
+    $("#form-task select[name='priority']").val("2");
     $("#form-task input:first").focus();
   };
 
   Constructor.prototype._findTask = function(e) {
     var el = $(e.currentTarget).closest('li');
     var id = el.data('id');
-    return _.find(this.tasks, {id: id});
+    return  _.find(this.tasks, {id: id});
   };
 
   Constructor.prototype.postDone = function(e) {
@@ -104,7 +103,7 @@ var TaskController = function () {
     }
     var self = this;
     $.ajax({
-      url: '/tasks/' + task.id,
+      url: '/lists/' + task.id,
       method: 'PUT',
       dataType: 'json',
       data: {
@@ -117,37 +116,37 @@ var TaskController = function () {
     });
   };
 
-    Constructor.prototype.postTask = function() {
-      var self = this;
-      $.post("/tasks", $("#form-task").serialize(), function(data) {
-        console.log(data);
-        self.tasks.push(data);
-        self.render();
-        self.clearForm();
-      });
-    };
+  Constructor.prototype.postTask = function() {
+    var self = this;
+    $.post("/lists", $("#form-task").serialize(), function(data) {
+      console.log(data);
+      self.tasks.push(data);
+      self.render();
+      self.clearForm();
+    });
+  };
 
-    Constructor.prototype.removeTask = function(e) {
-      var task = this._findTask(e);
-      if (!task) {
-        return;
-      }
-      var self = this;
-      if (confirm('정말로 삭제하시겠습니까?')) {
-        $.ajax({
-          url: '/tasks/' + task.id,
-          method: 'DELETE',
-          dataType: 'json',
-          success: function(data) {
-            self.tasks =_.reject(self.tasks, function(t) {
-              return t.id === task.id;
-            });
-            var el = $(e.currentTarget).closest('li');
-            el.remove();
-          }
-        });
-      }
-    };
+  Constructor.prototype.removeTask = function(e) {
+    var task = this._findTask(e);
+    if (!task) {
+      return;
+    }
+    var self = this;
+    if (confirm('정말로 삭제하시겠습니까?')) {
+      $.ajax({
+        url: '/lists/' + task.id,
+        method: 'DELETE',
+        dataType: 'json',
+        success: function(data) {
+          self.tasks = _.reject(self.tasks, function(t) {
+            return t.id === task.id;
+          });
+          var el = $(e.currentTarget).closest('li');
+          el.remove();
+        }
+      });
+    }
+  };
 
   return Constructor;
 } ();

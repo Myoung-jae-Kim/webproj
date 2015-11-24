@@ -48,7 +48,7 @@ router.put('/:id', needAuth, function(req, res, next) {
       return res.status(500).json({message: 'internal error', desc: err});
     }
     if (!list) {
-      return res.status(404).json({message: 'task not found'});
+      return res.status(404).json({message: 'list not found'});
     }
     if (req.body.content) {
       list.content = req.body.content;
@@ -81,7 +81,7 @@ router.get('/:id', needAuth, function(req, res, next) {
       return res.status(500).json({message: 'internal error', desc: err});
     }
     if (!list) {
-      return res.status(404).json({message: 'task not found'});
+      return res.status(404).json({message: 'list not found'});
     }
     res.json(list);
   });
@@ -93,7 +93,7 @@ router.delete('/:id', needAuth, function(req, res, next) {
       return res.status(500).json({message: 'internal error', desc: err});
     }
     if (!list) {
-      return res.status(404).json({message: 'task not found'});
+      return res.status(404).json({message: 'list not found'});
     }
     res.json({id: list._id});
   });

@@ -96,16 +96,16 @@ form.survey {
   .side section a:hover, .side section a.selected:hover {
     background-color: #337AB7; }
 
-#main ul.lists {
+#main ul.tasks {
   display: block; }
 
-#main .no-list {
+#main .no-task {
   display: none; }
 
-#main.no-list ul.lists {
+#main.no-task ul.tasks {
   display: none; }
 
-#main.no-list .no-list {
+#main.no-task .no-task {
   display: block; }
 
 .form-signin {

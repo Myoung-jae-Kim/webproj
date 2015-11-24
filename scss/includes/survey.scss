@@ -132,18 +132,18 @@ form.survey {
 }
 
 #main {
-  ul.lists {
+  ul.tasks {
     display: block;
   }
-  .no-list {
+  .no-task {
     display: none;
   }
 
-  &.no-list {
-    ul.lists {
+  &.no-task {
+    ul.tasks {
       display: none;
     }
-    .no-list {
+    .no-task {
       display: block;
     }
   }
