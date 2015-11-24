@@ -1,4 +1,4 @@
-form#form-task.form-inline(class='lists')
+form#form-list.form-inline(class='lists')
   .form
     .main
       input(type='text', id='content', name='content', placeholder='설문 주제가 무엇인가요?')
@@ -15,13 +15,13 @@ form#form-task.form-inline(class='lists')
           option(value='2', selected) 보통
           option(value='3') 사소
     .actions
-      button#post-task.btn.btn-primary.btn-lg.btn-block(type='button') 저장
+      button#post-list.btn.btn-primary.btn-lg.btn-block(type='button') 저장
 
 ul.lists
 
 .no-list
   .alert.alert-info List가 없습니다.
-script#task-template(type='text/template').
+script#list-template(type='text/template').
   <li class='list <%= doneStr %>' data-id='<%= id %>'>
     <span class='check'>
       <i class='fa fa-check fa-lg'></i>
@@ -40,5 +40,5 @@ script#task-template(type='text/template').
             
 script.
   $(function() {
-    var list = new TaskController();    
+    var list = new ListController();    
   });

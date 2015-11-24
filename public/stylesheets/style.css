@@ -13,18 +13,18 @@ form.survey {
   form.survey .actions button {
     margin-top: 1em; }
 
-.tasks {
+.lists {
   width: 100%;
   list-style: none;
   padding: 0;
   margin: 0; }
-  .tasks li.task {
+  .lists li.list {
     border-bottom: 1px solid #eaeaea;
     padding: 1em 0; }
-    .tasks li.task span {
+    .lists li.list span {
       display: inline-block;
       margin-right: 1em; }
-    .tasks li.task .check {
+    .lists li.list .check {
       width: 2em;
       height: 2em;
       border-radius: 1em;
@@ -33,22 +33,22 @@ form.survey {
       line-height: 2em;
       text-align: center;
       color: #fff; }
-    .tasks li.task .content {
+    .lists li.list .content {
       font-size: 1.1em;
       font-weight: bold;
       line-height: 2em; }
-    .tasks li.task .category {
+    .lists li.list .category {
       float: right;
       min-width: 5em;
       font-size: 0.9em; }
-    .tasks li.task .remove {
+    .lists li.list .remove {
       float: right;
       color: #b83309;
       padding: 0 1em;
       display: none; }
-    .tasks li.task:hover .remove {
+    .lists li.list:hover .remove {
       display: block; }
-    .tasks li.task .priority {
+    .lists li.list .priority {
       font-size: 0.8em;
       border-radius: 0.8em;
       background-color: #888;
@@ -57,15 +57,15 @@ form.survey {
       line-height: 1.6em;
       text-align: center;
       padding: 0 1em; }
-      .tasks li.task .priority.p2 {
+      .lists li.list .priority.p2 {
         background-color: #b0b33c; }
-      .tasks li.task .priority.p3 {
+      .lists li.list .priority.p3 {
         background-color: #a51e23; }
-    .tasks li.task.done {
+    .lists li.list.done {
       background-color: #eee; }
-      .tasks li.task.done .check {
+      .lists li.list.done .check {
         color: #2c9cd2; }
-      .tasks li.task.done span {
+      .lists li.list.done span {
         text-decoration: line-through; }
 
 .side section {
@@ -96,16 +96,16 @@ form.survey {
   .side section a:hover, .side section a.selected:hover {
     background-color: #337AB7; }
 
-#main ul.tasks {
+#main ul.lists {
   display: block; }
 
-#main .no-task {
+#main .no-list {
   display: none; }
 
-#main.no-task ul.tasks {
+#main.no-list ul.lists {
   display: none; }
 
-#main.no-task .no-task {
+#main.no-list .no-list {
   display: block; }
 
 .form-signin {

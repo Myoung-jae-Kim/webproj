@@ -1,7 +1,7 @@
 /*global $:false */
 /*global _:false */
 /*jslint browser:true, devel: true */
-var TaskController = function() {
+var ListController = function() {
   function setAjaxHandler() {
     $( document ).ajaxStart(function() {
       $("#main").addClass("loading");
@@ -18,10 +18,10 @@ var TaskController = function() {
   var Constructor = function () {
     var self = this;
     setAjaxHandler();
-    this.taskTemplate = _.template($("#task-template").html());
+    this.listTemplate = _.template($("#list-template").html());
     this.load();
-    $("#post-task").click(function() {
-      self.postTask();
+    $("#post-list").click(function() {
+      self.postList();
     }.bind(this));
     $("section.options a.option")
     .addClass('selected')
@@ -42,15 +42,15 @@ var TaskController = function() {
     });
   };
 
-  Constructor.prototype._visible = function(task) {
-    if (!checked('done', task.done)) {
+  Constructor.prototype._visible = function(list) {
+    if (!checked('done', list.done)) {
       return false;
     }
-    if (!checked('priority', task.priority)) {
+    if (!checked('priority', list.priority)) {
       return false;
     }
-    if (_.includes(['개인', '가족', '업무'], task.category)) {
-      if (!checked('category', task.category)) {
+    if (_.includes(['개인', '가족', '업무'], list.category)) {
+      if (!checked('category', list.category)) {
         return false;
       }
     } else if (!checked('category', '기타')) {
@@ -62,7 +62,7 @@ var TaskController = function() {
   Constructor.prototype.load = function() {
     var self = this;
     $.getJSON("/lists", function(data) {
-      self.tasks = data;
+      self.lists = data;
       self.render();
       self.clearForm();
     });
@@ -70,76 +70,76 @@ var TaskController = function() {
 
   Constructor.prototype.render = function() {
     var self = this;
-    $("#main").toggleClass("no-task", (this.tasks.length <= 0));
-    var html = _.map(this.tasks, function(task) {
-      if (self._visible(task)) {
-        task.doneStr = task.done ? 'done' : '';
-        return self.taskTemplate(task);
+    $("#main").toggleClass("no-list", (this.lists.length <= 0));
+    var html = _.map(this.lists, function(list) {
+      if (self._visible(list)) {
+        list.doneStr = list.done ? 'done' : '';
+        return self.listTemplate(list);
       }
       return "";
     });
-    $("ul.tasks").html(html.join("\n"));
-    $("ul.tasks .check").click(self.postDone.bind(this));
-    $(".task .remove").click(self.removeTask.bind(this));
+    $("ul.lists").html(html.join("\n"));
+    $("ul.lists .check").click(self.postDone.bind(this));
+    $(".list .remove").click(self.removeList.bind(this));
   };
 
   Constructor.prototype.clearForm = function() {
-    $("#form-task input").val("");
-    $("#form-task select[name='category']").val("개인");
-    $("#form-task select[name='priority']").val("2");
-    $("#form-task input:first").focus();
+    $("#form-list input").val("");
+    $("#form-list select[name='category']").val("개인");
+    $("#form-list select[name='priority']").val("2");
+    $("#form-list input:first").focus();
   };
 
-  Constructor.prototype._findTask = function(e) {
+  Constructor.prototype._findList = function(e) {
     var el = $(e.currentTarget).closest('li');
     var id = el.data('id');
-    return  _.find(this.tasks, {id: id});
+    return  _.find(this.lists, {id: id});
   };
 
   Constructor.prototype.postDone = function(e) {
-    var task = this._findTask(e);
-    if (!task) {
+    var list = this._findList(e);
+    if (!list) {
       return;
     }
     var self = this;
     $.ajax({
-      url: '/lists/' + task.id,
+      url: '/lists/' + list.id,
       method: 'PUT',
       dataType: 'json',
       data: {
-        done: task.done ? false : true
+        done: list.done ? false : true
       },
       success: function(data) {
-        task.done = data.done;
+        list.done = data.done;
         self.render();
       }
     });
   };
 
-  Constructor.prototype.postTask = function() {
+  Constructor.prototype.postList = function() {
     var self = this;
-    $.post("/lists", $("#form-task").serialize(), function(data) {
+    $.post("/lists", $("#form-list").serialize(), function(data) {
       console.log(data);
-      self.tasks.push(data);
+      self.lists.push(data);
       self.render();
       self.clearForm();
     });
   };
 
-  Constructor.prototype.removeTask = function(e) {
-    var task = this._findTask(e);
-    if (!task) {
+  Constructor.prototype.removeList = function(e) {
+    var list = this._findList(e);
+    if (!list) {
       return;
     }
     var self = this;
     if (confirm('정말로 삭제하시겠습니까?')) {
       $.ajax({
-        url: '/lists/' + task.id,
+        url: '/lists/' + list.id,
         method: 'DELETE',
         dataType: 'json',
         success: function(data) {
-          self.tasks = _.reject(self.tasks, function(t) {
-            return t.id === task.id;
+          self.lists = _.reject(self.lists, function(l) {
+            return l.id === list.id;
           });
           var el = $(e.currentTarget).closest('li');
           el.remove();

@@ -18,12 +18,12 @@ form.survey {
   }
 }
 
-.tasks {
+.lists {
   width: 100%;
   list-style: none;
   padding: 0;
   margin: 0;
-  li.task {
+  li.list {
     border-bottom: 1px solid #eaeaea;
     padding: 1em 0;
     span {
@@ -132,18 +132,18 @@ form.survey {
 }
 
 #main {
-  ul.tasks {
+  ul.lists {
     display: block;
   }
-  .no-task {
+  .no-list {
     display: none;
   }
 
-  &.no-task {
-    ul.tasks {
+  &.no-list {
+    ul.lists {
       display: none;
     }
-    .no-task {
+    .no-list {
       display: block;
     }
   }
