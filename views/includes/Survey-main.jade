@@ -1,4 +1,4 @@
-form#form-list.form-inline(class='lists')
+form#form-list.form-inline(class='survey')
   .form
     .main
       input(type='text', id='content', name='content', placeholder='설문 주제가 무엇인가요?')
@@ -19,7 +19,7 @@ form#form-list.form-inline(class='lists')
 
 ul.lists
 
-.no-list
+.no-list 
   .alert.alert-info List가 없습니다.
 script#list-template(type='text/template').
   <li class='list <%= doneStr %>' data-id='<%= id %>'>

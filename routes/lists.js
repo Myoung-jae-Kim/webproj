@@ -33,7 +33,6 @@ router.post('/', needAuth, function(req, res, next) {
     deadline: req.body.deadline,
     user: req.user.id
   });
-
   list.save(function(err, doc) {
     if (err) {
       return res.status(500).json({message: 'internal error', desc: err});
@@ -65,7 +64,6 @@ router.put('/:id', needAuth, function(req, res, next) {
     if (req.body.done) {
       list.done = req.body.done;
     }
-
     list.save(function(err) {
       if (err) {
         return res.status(500).json({message: 'internal error', desc: err});
