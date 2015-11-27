@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 var schema = new Schema({
   content: {type: String, required: true, trim: true},
   category: {type: String, trim: true},
+  priority: {type: Number, trim: true},
   deadline: Date,
   done: {type: Boolean, default: false},
   user: {type: Schema.Types.ObjectId, index: true, required: true},
@@ -17,6 +18,7 @@ var schema = new Schema({
         id: list._id.toString(),
         category: list.category,
         content: list.content,
+        priority: list.priority,
         deadline: (list.deadline) ? moment(list.deadline).format('YYYY-MM-DD') : "N/A",
         done: list.done
       };
