@@ -14,6 +14,21 @@ router.get('/', needAuth, function(req, res, next) {
   res.render('survey');
 });
 
+router.get('/create', function(req, res, next) {
+  res.render('survey/create');
+});
+
+router.get('/current', function(req, res, next) {
+  res.render('survey/current');
+});
+
+router.get('/edit', function(req, res, next) {
+  res.render('survey/edit');
+});
+
+router.get('/reply', function(req, res, next) {
+  res.render('survey/reply');
+});
 // router.post('/', function(req, res, next) {
 //   req.flash('success', '새로운 설문조사가 추가 되었습니다');
 //   res.redirect('/Survey');

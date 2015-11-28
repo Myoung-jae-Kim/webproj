@@ -35,6 +35,10 @@ script#list-template(type='text/template').
     <span class='priority p<%= priority %>'>
       <%= (priority === 1) ? "중요" : ((priority === 3) ? "사소": "보통") %>
     </span>
+    <a href='/survey/create' class='create'><button type="button">설문작성</button></a>
+    <a href='/survey/reply' class='reply'><button type="button">설문하기</button></a>
+    <a href='/survey/edit' class='edit'><button type="button">설문수정</button></a>
+    <a href='/survey/current' class='current'><button type="button">설문현황</button></a>
     <a href='#' class='remove'><i class='fa fa-trash-o'></i></a>
   </li>
             
