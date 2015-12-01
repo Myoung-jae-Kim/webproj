@@ -3,3 +3,13 @@ extends ../layout
 block content
   .container
     h1.page-header 설문조사 응답
+    h3.page-header= survey.title
+    p
+      //- b by #{post.email}
+      //- | 
+      span at #{moment(survey.createdAt).format('YYYY-MM-DD HH:mm:ss')} 
+      | 
+      | (조회수 #{post.read})
+    p.well(style='white-space:pre;')= survey.content
+    
+    a.btn.btn-default(href='/survey/current') 목록
