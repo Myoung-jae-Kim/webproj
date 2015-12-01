@@ -1,4 +1,6 @@
-var express = require('express');
+var express = require('express'),
+    User = require('../models/User'),
+    Survey = require('../models/Survey');
 var router = express.Router();
 
 function needAuth(req, res, next) {
@@ -15,7 +17,22 @@ router.get('/', needAuth, function(req, res, next) {
 });
 
 router.get('/create', function(req, res, next) {
-  res.render('survey/create');
+  res.render('survey/create', {survey: {}});
+});
+
+router.post('/', function(req, res, next) {
+  var survey = new Survey({
+    email: req.body.email,
+    password: req.body.password,
+    title: req.body.title,
+    content: req.body.content
+  });
+  survey.save(function(err, doc) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/survey/' + doc.id);
+  });
 });
 
 router.get('/current', function(req, res, next) {
