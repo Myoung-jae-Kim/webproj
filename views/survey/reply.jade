@@ -3,11 +3,42 @@ extends ../layout
 block content
   .container
     h1.page-header 설문조사 응답
-    //- h1.page-header 설문조사 응답
-    //- h3.page-header= survey.title
-    //- h3 by #{survey.email}
-    //- .well= survey.content
-    //- 
+    h3.page-header= survey.title
+    h3 by #{survey.email}
+    .well= survey.content
+    
+    hr
+    h3 Comment (#{survey.numReply})
+    table.table
+      tr
+        th email
+        th content
+        th time
+      each reply in replys
+        tr
+          td= reply.email
+          td= reply.content
+          td= moment(reply.createdAt).format('YYYY/MM/DD')
+    
+    form.form-inline(action='/survey/' + survey._id + '/replys', method='POST')
+      .form-group
+        label.sr-only(for='email') email
+        input.form-control(name='email', placeholder='email')
+      .form-group
+        label.sr-only(for='content') content
+        input.form-control(name='content', size=50, placeholder='content')
+        //- input.form-control(name='content', type='radio', value='1',checked=(val===1))
+        //- label 1
+        //- select(name='content')
+          //- option(value='aaa') AAA
+          //- input(type='checkbox', name='content', value='1')
+            //- label 운동
+      button.btn.btn-info 댓글저장
+      
+    hr
+    a.btn.btn-default(href='/survey/current') 목록 
+    
+
     //- p
     //-   b by #{survey.number}
     //-   | 
