@@ -10,7 +10,7 @@ block content
     form(action = (survey.id) ? "/survey/#{survey.id}?_method=PUT" : "/survey", method='POST')
       .form-group
         label(for='email') 이메일
-        input.form-control(name='email')
+        input.form-control(id='email', name='email' , placeholder='email')
       .form-group
         label(for='title') Title
         input.form-control(type='text', id='title', name='title', placeholder='title', value=survey.title)
@@ -22,6 +22,14 @@ block content
         a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
         | 
         button.btn.btn-primary(type='submit') 완료
+        | 
+        button.btn.btn-success(style='display:none' type='button') 전송중
+        
+    script(type='text/javascript').
+      $(".btn-primary").click(function(e) {
+        $(e.currentTarget).hide();
+        $('.btn-success').show();
+      });
         
         
       

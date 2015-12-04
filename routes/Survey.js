@@ -127,15 +127,15 @@ router.get('/reply', function(req, res, next) {
 //   res.render('survey/reply');
 // });
 
-// router.delete('/:id', function(req, res, next) {
-//   Survey.findOneAndRemove(req.params.id, function(err) {
-//     if (err) {
-//       return next(err);
-//     }
-//     res.redirect('/survey/current');
-//   });
-// });
-//
+router.delete('/:id', function(req, res, next) {
+  Survey.findOneAndRemove(req.params.id, function(err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/survey/current');
+  });
+});
+
 
 // router.post('/', function(req, res, next) {
 //   req.flash('success', '새로운 설문조사가 추가 되었습니다');
