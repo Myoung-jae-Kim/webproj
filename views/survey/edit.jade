@@ -10,7 +10,7 @@ block content
     form(action = (survey.id) ? "/survey/#{survey.id}?_method=PUT" : "/survey", method='POST')
       .form-group
         label(for='email') 이메일
-        input.form-control(id='email', name='email' , placeholder='email')
+        input.form-control(id='email', name='email' , placeholder='email', value=survey.email)
       .form-group
         label(for='title') Title
         input.form-control(type='text', id='title', name='title', placeholder='title', value=survey.title)
