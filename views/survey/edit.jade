@@ -6,8 +6,11 @@ block content
       h1.page-header 설문조사 수정
     else
       h1.page-header 설문조사 작성
-
+    
     form(action = (survey.id) ? "/survey/#{survey.id}?_method=PUT" : "/survey", method='POST')
+      .form-group
+        label(for='email') 이메일
+        input.form-control(name='email')
       .form-group
         label(for='title') Title
         input.form-control(type='text', id='title', name='title', placeholder='title', value=survey.title)
@@ -19,3 +22,6 @@ block content
         a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
         | 
         button.btn.btn-primary(type='submit') 완료
+        
+        
+      

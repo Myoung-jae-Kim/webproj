@@ -3,27 +3,12 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
+  survey: {type: Schema.Types.ObjectId, required: true, trim: true},
+  email: {type: String, required: true, trim: true},
   content: {type: String, required: true, trim: true},
-  category: {type: String, trim: true},
-  priority: {type: Number, trim: true},
-  deadline: Date,
-  done: {type: Boolean, default: false},
-  user: {type: Schema.Types.ObjectId, index: true, required: true},
   createdAt: {type: Date, default: Date.now}
 },{
-  toJSON: {
-    virtuals: true,
-    transform: function(list) {
-      return {
-        id: list._id.toString(),
-        category: list.category,
-        content: list.content,
-        priority: list.priority,
-        deadline: (list.deadline) ? moment(list.deadline).format('YYYY-MM-DD') : "N/A",
-        done: list.done
-      };
-    }
-  },
+  toJSON: {virtuals: true},
   toObject: {virtuals: true}
 });
 

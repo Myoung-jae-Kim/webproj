@@ -149,4 +149,5 @@ var ListController = function() {
   };
 
   return Constructor;
+
 } ();

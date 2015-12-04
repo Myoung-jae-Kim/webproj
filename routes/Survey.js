@@ -1,5 +1,6 @@
 var express = require('express'),
-    User = require('../models/User'),
+    Reply = require('../models/Reply'),
+    // List = require('../models/List'),
     Survey = require('../models/Survey');
 var router = express.Router();
 
@@ -22,84 +23,119 @@ router.get('/create', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   var survey = new Survey({
-    // email: req.body.email,
-    // password: req.body.password,
     title: req.body.title,
+    email: req.body.email,
     content: req.body.content
   });
-  survey.save(function(err, doc) {
+
+  survey.save(function(err) {
     if (err) {
-      console.error(err);
       return next(err);
     }
-    // res.redirect('/survey/' + doc.id);
     res.redirect('/survey');
   });
 });
 
-router.get('/:id', function(req, res, next) {
-  Survey.findById(req.params.id, function(err, survey) {
-    if (err) {
-      return next(err);
-    }
-    if (survey) {
-      survey.read = survey.read + 1;
-      survey.save(function(err) { });
-      res.render('survey/reply', {survey: survey});
-    }
-    return next(new Error('not found'));
-  });
-});
-
 router.get('/current', function(req, res, next) {
-  Survey.find({}, function(err, surveying) {
+  Survey.find({}, function(err, docs) {
     if (err) {
       return next(err);
     }
-    res.render('survey/current', {surveying: surveying});
+    res.render('survey/current', {surveys: docs});
   });
-});
-
-router.get('/edit', function(req, res, next) {
-  res.render('survey/edit');
-});
-
-router.get('/:id/edit', function(req, res, next) {
-  Survey.findById(req.params.id, function(err, survey) {
-    if (err) {
-      return next(err);
-    }
-    res.render('survey/edit', {survey: survey});
-  });
-});
-
-router.put('/:id', function(req, res, next) {
-  Survey.findById(req.params.id, function(err, survey) {
-    if (err) {
-      return next(err);
-    }
-    survey.title = req.body.title;
-    survey.content = req.body.content;
-    survey.save(function(err) {
-      res.redirect('/survey/' + req.params.id);
-    });
-    res.redirect('back');
-  });
+  // res.render('survey/current');
 });
 
 router.get('/reply', function(req, res, next) {
   res.render('survey/reply');
 });
 
-router.delete('/:id', function(req, res, next) {
-  Survey.findOneAndRemove(req.params.id, function(err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect('/survey/current');
-  });
-});
+// router.get('/create', function(req, res, next) {
+//   res.render('survey/edit', {survey: {}});
+// });
+//
+// router.post('/', function(req, res, next) {
+//   var survey = new Survey({
+//     email: req.body.email,
+//     // password: req.body.password,
+//     title: req.body.title,
+//     content: req.body.content
+//   });
+//   // survey.number = survey.number + 1;
+//   survey.save(function(err, doc) {
+//     if (err) {
+//       // console.error(err);
+//       return next(err);
+//     }
+//     // res.redirect('/survey/' + doc.id);
+//     res.redirect('/survey');
+//   });
+// });
+//
+// router.get('/:id', function(req, res, next) {
+//   Survey.findById(req.params.id, function(err, survey) {
+//     if (err) {
+//       return next(err);
+//     }
+//     if (survey) {
+//       survey.response = survey.response + 1;
+//       survey.save(function(err) { });
+//       res.render('survey/reply', {survey: survey});
+//     }
+//     return next(new Error('not found'));
+//   });
+// });
+//
+// router.get('/current', function(req, res, next) {
+//   Survey.find({}, function(err, docs) {
+//     if (err) {
+//       // console.error(err);
+//       return next(err);
+//     }
+//     res.render('survey/current', {surveying: docs});
+//   });
+// });
+//
+// router.get('/edit', function(req, res, next) {
+//   res.render('survey/edit');
+// });
+//
+// router.get('/:id/edit', function(req, res, next) {
+//   Survey.findById(req.params.id, function(err, survey) {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.render('survey/edit', {survey: survey});
+//   });
+// });
 
+// router.put('/:id', function(req, res, next) {
+//   Survey.findById(req.params.id, function(err, survey) {
+//     if (err) {
+//       return next(err);
+//     }
+//     survey.title = req.body.title;
+//     survey.content = req.body.content;
+//     survey.save(function(err) {
+//       res.redirect('/survey/' + req.params.id);
+//     });
+//     res.redirect('back');
+//   });
+// });
+
+// router.get('/reply', function(req, res, next) {
+//   res.render('survey/reply');
+// });
+
+// router.delete('/:id', function(req, res, next) {
+//   Survey.findOneAndRemove(req.params.id, function(err) {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.redirect('/survey/current');
+//   });
+// });
+//
 
 // router.post('/', function(req, res, next) {
 //   req.flash('success', '새로운 설문조사가 추가 되었습니다');
