@@ -1,6 +1,6 @@
 var express = require('express'),
     Reply = require('../models/Reply'),
-    // List = require('../models/List'),
+    List = require('../models/List'),
     Survey = require('../models/Survey');
 var router = express.Router();
 
@@ -18,6 +18,8 @@ router.get('/', needAuth, function(req, res, next) {
 });
 
 router.get('/create', function(req, res, next) {
+  // List.findById(req.params.id)
+  console.log(req.params);
   res.render('survey/edit', {survey: {}});
 });
 
@@ -25,7 +27,8 @@ router.post('/', function(req, res, next) {
   var survey = new Survey({
     title: req.body.title,
     email: req.body.email,
-    content: req.body.content
+    content: req.body.content,
+    list: req.body._id
   });
 
   survey.save(function(err) {
@@ -37,8 +40,9 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/current', function(req, res, next) {
+  // console.log(req.params);
   Survey.find({}, function(err, docs) {
-      if (err) {
+    if (err) {
       return next(err);
     }
     res.render('survey/current', {surveys: docs});
@@ -114,9 +118,5 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
-// router.put('/:id', function(req, res, next) {
-//   req.flash('success', '설문조사 내용 변경');
-//   res.redirect('/Survey');
-// });
 
 module.exports = router;
