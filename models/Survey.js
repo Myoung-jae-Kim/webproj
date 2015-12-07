@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
-  list: {type: Schema.Types.ObjectId, index: true},
+  // list: {type: Schema.Types.ObjectId, index: true},
   title: {type: String, required: true, trim: true},
   email: {type: String, required: true, trim: true},
   content: {type: String, required: true, trim: true},

@@ -15,32 +15,7 @@ block content
         label(for='title') 설문 주제
         input.form-control(type='text', id='title', name='title', placeholder='title', value=survey.title)
       .form-group
-        label 1
-        div
-        input(name='select', type='radio' value='2')
-        | 
-        input(name='opinion', type='text')
-        div
-        input(name='select', type='radio' value='2')
-        | 
-        input(name='opinion', type='text')
-        div
-        input(name='select', type='radio' value='2')
-        | 
-        input(name='opinion', type='text')
-        div
-        input(name='select', type='radio' value='2')
-        | 기타
-        input(name='opinion', type='text')
-        div
-        label 2
-        input.form-control(type='text', id='title', name='title', placeholder='주관식 의견')
-        div
-        label 3
-        textarea.form-control(id='content', rows='10', name='content', placeholder='기이이~~~~~~~~~~~~인 의견')
-        //- input(type='checkbox')
-        //-   label 아몰랑
-        
+        ol      
       .form-group
         label(for='content') Content
         textarea.form-control(id='content', rows='10', name='content', placeholder='content here')= survey.content
@@ -52,16 +27,31 @@ block content
         | 
         button.btn.btn-success(style='display:none' type='button') 전송중
         | 
-        select(name='select')
-          option(value='a') 객관식
-          option(value='b') 주관식
+        select.survey-options(name='options')
+          option(value='객관식') 객관식
+          option(value='텍스트') 텍스트
+          option(value='단락 텍스트') 단락 텍스트
         | 
-        button.btn.btn-default 추가
+        button.create.btn.btn-default(type='button') 추가
+      
+        
     script(type='text/javascript').
       $(".btn-primary").click(function(e) {
         $(e.currentTarget).hide();
-        $('.btn-success').show();
+        $(".btn-success").show();
       });
-        
-        
       
+      $(".create").click(function() {
+        if($(".survey-options").children("option:selected").text() === "객관식") {
+          $("ol").append("<li class='choice'><span><input type='text'></input></span><div><input type='radio'> <input type='text'></input></input></div><div><input type='radio'> <input type='text'></input></input></div><div><input type='radio'> <input type='text'></input></input></div><div><input type='radio'> <input type='text'></input></input></div><div><input type='radio'> 기타<input type='text'></input></input></div></li><br>");
+        } else if($(".survey-options").children("option:selected").text() === "텍스트") {
+          $("ol").append("<li class='text'><span><input type='text'></input></span><div><input class='form-control' type='text'></input></div></li><br>")
+        } else {
+          $("ol").append("<li class='longtext'><span><input type='text'></input></span><br><div><textarea class='form-control' rows='10' placeholder='긴의견'></textarea></div></li><br>")
+        }
+      });
+      
+    //- script.
+    //-   $(function() {
+    //-     var edit = new EditController();    
+    //-   });
