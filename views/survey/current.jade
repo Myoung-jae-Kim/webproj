@@ -20,10 +20,10 @@ block content
             td= survey.numReply
             td= moment(survey.createdAt).format('YYYY-MM-DD HH:mm:ss')
             td
-              a.btn.btn-xs.btn-default(href='/survey/#{survey.id}/edit') 수정
+              a.btn.btn-xs.btn-default(href='/survey/#{survey.id}/#{listId}/edit') 수정
               | 
               a.btn.btn-xs.btn-default(data-id=survey.id, class='delete') 삭제
-    a.btn.btn-primary(href='/survey/create') 설문지 작성
+    a.btn.btn-primary(href='/survey/create/#{listId}') 설문지 작성
     
     form#deleteForm(style='display:none', method="POST")
             

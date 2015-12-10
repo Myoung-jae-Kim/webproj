@@ -36,11 +36,10 @@ script#list-template(type='text/template').
       <%= (priority === 1) ? "중요" : ((priority === 3) ? "사소": "보통") %>
     </span>
     <span>
-        <a href='/survey/create' class='create'><button type="button">설문작성</button></a>
+        <a href='/survey/create/<%= id %>' class='create'><button type="button">설문작성</button></a>
     </span>
     <span>
-        <a href='/survey/current' class='current'><button type="submit">설문목록</button></a>
-        <input value='<%= id %>'></input>
+        <a href='/survey/current/<%= id %>' class='current'><button type="button">설문목록</button></a>
     </span>
     <a href='#' class='remove'><i class='fa fa-trash-o'></i></a>
   </li>

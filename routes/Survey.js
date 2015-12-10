@@ -17,10 +17,10 @@ router.get('/', needAuth, function(req, res, next) {
   res.render('survey');
 });
 
-router.get('/create', function(req, res, next) {
+router.get('/create/:id', function(req, res, next) {
   // List.findById(req.params.id)
-  console.log(req.params);
-  res.render('survey/edit', {survey: {}});
+  // console.log(req.params);
+  res.render('survey/edit', {survey: {}, listId : req.params.id});
 });
 
 router.post('/', function(req, res, next) {
@@ -28,24 +28,26 @@ router.post('/', function(req, res, next) {
     title: req.body.title,
     email: req.body.email,
     content: req.body.content,
-    list: req.body._id
+    listId : req.body.listId
   });
 
   survey.save(function(err) {
     if (err) {
       return next(err);
     }
-    res.redirect('/survey/current');
+    res.redirect('/survey');
   });
 });
 
-router.get('/current', function(req, res, next) {
+router.get('/current/:id', function(req, res, next) {
   // console.log(req.params);
-  Survey.find({}, function(err, docs) {
+  console.log("일단 들어옴! /current/:id");
+  console.log(req.params.id);
+  Survey.find({listId : req.params.id}, function(err, docs) {
     if (err) {
       return next(err);
     }
-    res.render('survey/current', {surveys: docs});
+    res.render('survey/current', {surveys: docs, listId : req.params.id});
   });
 });
 
@@ -83,16 +85,17 @@ router.post('/:id/replys', function(req, res, next) {
   });
 });
 
-router.get('/:id/edit', function(req, res, next) {
+router.get('/:id/:listId/edit', function(req, res, next) {
   Survey.findById(req.params.id, function(err, survey) {
     if (err) {
       return next(err);
     }
-    res.render('survey/edit', {survey: survey});
+    res.render('survey/edit', {survey: survey, listId : req.params.listId});
   });
 });
 
 router.put('/:id', function(req, res, next) {
+  console.log("here is /:id");
   Survey.findById(req.params.id, function(err, survey) {
     if (err) {
       return next(err);
@@ -101,11 +104,14 @@ router.put('/:id', function(req, res, next) {
     survey.email = req.body.email;
     survey.title = req.body.title;
     survey.content = req.body.content;
+    console.log("값 변경 성공");
     survey.save(function(err) {
-      res.redirect('/survey/' + req.params.id);
+      if(err) {
+        return next(err);
+      }
+      console.log("성공 current이동");
+      res.redirect('/survey/current/' + req.body.listId);
     });
-
-    res.redirect('back');
   });
 });
 
@@ -114,7 +120,7 @@ router.delete('/:id', function(req, res, next) {
     if (err) {
       return next(err);
     }
-    res.redirect('/survey/current');
+    res.redirect('/survey');
   });
 });
 
