@@ -5,7 +5,27 @@ block content
     h1.page-header 설문조사 응답
     h3.page-header= survey.title
     h3 by #{survey.email}
+    h3 설문 설명
     .well= survey.content
+    h4 설문 조사 
+    p
+    | #{survey.selecttitle}
+    p
+    input.select(type='radio', id='select', name='select',value='1')
+    | #{survey.select[0]}
+    input.select(type='radio', id='select', name='select',value='2')
+    | #{survey.select[1]}
+    input.select(type='radio', id='select', name='select',value='3')
+    | #{survey.select[2]}
+    input.select(type='radio', id='select', name='select',value='4')
+    | #{survey.select[3]}
+    input.select(type='radio', id='select', name='select',value='5')
+    | #{survey.select[4]}
+    p
+    | #{survey.texttitle}
+    .well= survey.text  
+    | #{survey.longtexttitle}
+    .well= survey.longtext    
     
     hr
     h3 Comment (#{survey.numReply})

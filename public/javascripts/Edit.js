@@ -18,16 +18,16 @@ $(document).ready(function(){
     }
   });
 
- $("div").each(function() {
-   if($("div").hasClass("choice")) {
-    var choice = $(".choice").serializeArray();
-    console.log(choice);
-  } else if($("div").hasClass("text")) {
-    var text = $(".text").serializeArray();
-    console.log(text);
-  } else if($("div").hasClass("longtext")) {
-    var longtext = $(".longtext").serializeArray();
-    console.log(longtext);
-  }
- });
+ // $("div").each(function() {
+ //   if($("div").hasClass("choice")) {
+ //    var choice = $(".choice").serializeArray();
+ //    console.log(choice);
+ //  } else if($("div").hasClass("text")) {
+ //    var text = $(".text").serializeArray();
+ //    console.log(text);
+ //  } else if($("div").hasClass("longtext")) {
+ //    var longtext = $(".longtext").serializeArray();
+ //    console.log(longtext);
+ //  }
+ // });
 });

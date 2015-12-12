@@ -28,6 +28,12 @@ router.post('/', function(req, res, next) {
     title: req.body.title,
     email: req.body.email,
     content: req.body.content,
+    selecttitle: req.body.selecttitle,
+    select: req.body.opinion,
+    texttitle: req.body.texttitle,
+    text: req.body.text,
+    longtexttitle: req.body.longtexttitle,
+    longtext: req.body.longtext,
     listId : req.body.listId
   });
 
@@ -104,6 +110,12 @@ router.put('/:id', function(req, res, next) {
     survey.email = req.body.email;
     survey.title = req.body.title;
     survey.content = req.body.content;
+    survey.selecttitle =req.body.selecttitle;
+    survey.select = req.body.opinion;
+    survey.texttitle = req.body.texttitle;
+    survey.text = req.body.text;
+    survey.longtexttitle = req.body.longtexttitle;
+    survey.longtext = req.body.longtext;
     console.log("값 변경 성공");
     survey.save(function(err) {
       if(err) {
