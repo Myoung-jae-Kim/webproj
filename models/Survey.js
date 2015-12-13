@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 var schema = new Schema({
   // list: {type: Schema.Types.ObjectId, index: true},
   // listid: {type: String, required: true},
-  selecttitle: {type: String, trim: true},
+  selecttitle: [],
   select: [],
   texttitle: {type: String, trim: true},
   text: {type: String, trim: true},

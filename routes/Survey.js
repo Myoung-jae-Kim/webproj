@@ -75,6 +75,9 @@ router.post('/:id/replys', function(req, res, next) {
   var reply = new Reply({
     survey: req.params.id,
     select: req.body.replyselect,
+    select2: req.body.replyselect2,
+    select3: req.body.replyselect3,
+    select4: req.body.replyselect4,
     text: req.body.replytext,
     longtext: req.body.replylongtext
   });

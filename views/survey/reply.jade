@@ -9,7 +9,7 @@ block content
     .well= survey.content
     h4 설문 조사 
     div
-      | #{survey.selecttitle}
+      | #{survey.selecttitle[0]}
       p
       input.select(type='radio', id='select', name='select',value='1')
       | #{survey.select[0]}
@@ -23,6 +23,51 @@ block content
       | 기타
       span
         input.ect(type='text', name='ect')
+    div
+      | #{survey.selecttitle[1]}
+      p
+      input.select(type='radio', id='select2', name='select2',value='1')
+      | #{survey.select[5]}
+      input.select(type='radio', id='select2', name='select2',value='2')
+      | #{survey.select[6]}
+      input.select(type='radio', id='select2', name='select2',value='3')
+      | #{survey.select[7]}
+      input.select(type='radio', id='select2', name='select2',value='4')
+      | #{survey.select[8]}
+      input.select(type='radio', id='select2', name='select2',value='5')
+      | 기타
+      span
+        input.ect(type='text', name='ect2')
+    div
+      | #{survey.selecttitle[2]}
+      p
+      input.select(type='radio', id='select3', name='select3',value='1')
+      | #{survey.select[10]}
+      input.select(type='radio', id='select3', name='select3',value='2')
+      | #{survey.select[11]}
+      input.select(type='radio', id='select3', name='select3',value='3')
+      | #{survey.select[12]}
+      input.select(type='radio', id='select3', name='select3',value='4')
+      | #{survey.select[13]}
+      input.select(type='radio', id='select3', name='select3',value='5')
+      | 기타
+      span
+        input.ect(type='text', name='ect3')
+    div
+      | #{survey.selecttitle[3]}
+      p
+      input.select(type='radio', id='select4', name='select4',value='1')
+      | #{survey.select[15]}
+      input.select(type='radio', id='select4', name='select4',value='2')
+      | #{survey.select[16]}
+      input.select(type='radio', id='select4', name='select4',value='3')
+      | #{survey.select[17]}
+      input.select(type='radio', id='select4', name='select4',value='4')
+      | #{survey.select[18]}
+      input.select(type='radio', id='select4', name='select4',value='5')
+      | 기타
+      span
+        input.ect(type='text', name='ect4')
       p
       | #{survey.texttitle}
       input.form-control(type='text', id='text', name='text', placeholder='주관식')
@@ -34,12 +79,18 @@ block content
     table.table
       tr
         th select
+        th select2
+        th select3
+        th select4
         th text
         th longtext
         th time
       each reply in replys
         tr
           td= reply.select
+          td= reply.select2
+          td= reply.select3
+          td= reply.select4
           td= reply.text
           td= reply.longtext
           td= moment(reply.createdAt).format('YYYY/MM/DD')
@@ -47,6 +98,12 @@ block content
     form.form-inline(action='/survey/' + survey._id + '/replys', method='POST')
       .form-group
         input.replyselect(type='hidden', name='replyselect')
+      .form-group
+        input.replyselect2(type='hidden', name='replyselect2')
+      .form-group
+        input.replyselect3(type='hidden', name='replyselect3')
+      .form-group
+        input.replyselect4(type='hidden', name='replyselect4')
       .form-group
         input.replytext.form-control(type='hidden', name='replytext', placeholder='text')
       .form-group
@@ -62,6 +119,21 @@ block content
             $(".replyselect").attr("value",$("input[name='ect']").val());
         } else {
             $(".replyselect").attr("value",$("input[name='select']:checked").val());
+        }
+        if($("input[name='select2']:checked").val() == 5) {
+            $(".replyselect2").attr("value",$("input[name='ect2']").val());
+        } else {
+            $(".replyselect2").attr("value",$("input[name='select2']:checked").val());
+        }
+        if($("input[name='select3']:checked").val() == 5) {
+            $(".replyselect3").attr("value",$("input[name='ect3']").val());
+        } else {
+            $(".replyselect3").attr("value",$("input[name='select3']:checked").val());
+        }
+        if($("input[name='select4']:checked").val() == 5) {
+            $(".replyselect4").attr("value",$("input[name='ect4']").val());
+        } else {
+            $(".replyselect4").attr("value",$("input[name='select4']:checked").val());
         }
         $(".replytext").attr("value",$("#text").val());
         $(".replylongtext").attr("value",$("#longtext").val());
