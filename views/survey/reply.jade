@@ -20,7 +20,9 @@ block content
       input.select(type='radio', id='select', name='select',value='4')
       | #{survey.select[3]}
       input.select(type='radio', id='select', name='select',value='5')
-      | #{survey.select[4]}
+      | 기타
+      span
+        input.ect(type='text', name='ect')
       p
       | #{survey.texttitle}
       input.form-control(type='text', id='text', name='text', placeholder='주관식')
@@ -31,41 +33,36 @@ block content
     h3 Reply (#{survey.numReply})
     table.table
       tr
+        th select
         th text
         th longtext
         th time
       each reply in replys
         tr
+          td= reply.select
           td= reply.text
           td= reply.longtext
           td= moment(reply.createdAt).format('YYYY/MM/DD')
     
     form.form-inline(action='/survey/' + survey._id + '/replys', method='POST')
-      //- .form-group
-      //-   input.replyselect(name='replyselect')
       .form-group
-        label.sr-only(for='email') email
+        input.replyselect(type='hidden', name='replyselect')
+      .form-group
         input.replytext.form-control(type='hidden', name='replytext', placeholder='text')
       .form-group
-        label.sr-only(for='content') content
         input.replylongtext.form-control(type='hidden', name='replylongtext', size=50, placeholder='longtext')
-        //- input.form-control(name='content', type='radio', value='1',checked=(val===1))
-        //- label 1
-        //- select(name='content')
-          //- option(value='aaa') AAA
-          //- input(type='checkbox', name='content', value='1')
-            //- label 운동
-      button.btn.btn-info 설문 저장
-      | 
-      button.valuetest.btn.btn-lg test
+      button.valuesave.btn.btn-info 설문 저장
       
     hr
-    a.btn.btn-default(href='/survey') 전체 목록 
+    a.btn.btn-default(href='/survey') 전체 목록
     
     script(type='text/javascript').
-      //- $(".select").change
-      $(".valuetest").click(function(){ 
-        //- $(".replyselect").attr("value",$("#select").val());
+      $(".valuesave").click(function(){ 
+        if($("input[name='select']:checked").val() == 5) {
+            $(".replyselect").attr("value",$("input[name='ect']").val());
+        } else {
+            $(".replyselect").attr("value",$("input[name='select']:checked").val());
+        }
         $(".replytext").attr("value",$("#text").val());
         $(".replylongtext").attr("value",$("#longtext").val());
       });

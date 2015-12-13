@@ -74,6 +74,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/:id/replys', function(req, res, next) {
   var reply = new Reply({
     survey: req.params.id,
+    select: req.body.replyselect,
     text: req.body.replytext,
     longtext: req.body.replylongtext
   });
