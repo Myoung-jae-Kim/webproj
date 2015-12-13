@@ -12,7 +12,7 @@ function needAuth(req, res, next) {
 }
 
 router.get('/', needAuth, function(req, res, next) {
-  List.find({user: req.user.id}, function(err, lists) {
+  List.find({}, function(err, lists) {
     if (err) {
       return res.status(500).json({message: 'internal error', desc: err});
     }
