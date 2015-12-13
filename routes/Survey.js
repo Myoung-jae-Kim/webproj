@@ -31,9 +31,9 @@ router.post('/', function(req, res, next) {
     selecttitle: req.body.selecttitle,
     select: req.body.opinion,
     texttitle: req.body.texttitle,
-    text: req.body.text,
+    // text: req.body.text,
     longtexttitle: req.body.longtexttitle,
-    longtext: req.body.longtext,
+    // longtext: req.body.longtext,
     listId : req.body.listId
   });
 
@@ -74,8 +74,8 @@ router.get('/:id', function(req, res, next) {
 router.post('/:id/replys', function(req, res, next) {
   var reply = new Reply({
     survey: req.params.id,
-    email: req.body.email,
-    content: req.body.content
+    text: req.body.replytext,
+    longtext: req.body.replylongtext
   });
 
   reply.save(function(err) {
@@ -113,9 +113,9 @@ router.put('/:id', function(req, res, next) {
     survey.selecttitle =req.body.selecttitle;
     survey.select = req.body.opinion;
     survey.texttitle = req.body.texttitle;
-    survey.text = req.body.text;
+    // survey.text = req.body.text;
     survey.longtexttitle = req.body.longtexttitle;
-    survey.longtext = req.body.longtext;
+    // survey.longtext = req.body.longtext;
     console.log("값 변경 성공");
     survey.save(function(err) {
       if(err) {

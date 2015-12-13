@@ -8,62 +8,64 @@ block content
     h3 설문 설명
     .well= survey.content
     h4 설문 조사 
-    p
-    | #{survey.selecttitle}
-    p
-    input.select(type='radio', id='select', name='select',value='1')
-    | #{survey.select[0]}
-    input.select(type='radio', id='select', name='select',value='2')
-    | #{survey.select[1]}
-    input.select(type='radio', id='select', name='select',value='3')
-    | #{survey.select[2]}
-    input.select(type='radio', id='select', name='select',value='4')
-    | #{survey.select[3]}
-    input.select(type='radio', id='select', name='select',value='5')
-    | #{survey.select[4]}
-    p
-    | #{survey.texttitle}
-    .well= survey.text  
-    | #{survey.longtexttitle}
-    .well= survey.longtext    
+    div
+      | #{survey.selecttitle}
+      p
+      input.select(type='radio', id='select', name='select',value='1')
+      | #{survey.select[0]}
+      input.select(type='radio', id='select', name='select',value='2')
+      | #{survey.select[1]}
+      input.select(type='radio', id='select', name='select',value='3')
+      | #{survey.select[2]}
+      input.select(type='radio', id='select', name='select',value='4')
+      | #{survey.select[3]}
+      input.select(type='radio', id='select', name='select',value='5')
+      | #{survey.select[4]}
+      p
+      | #{survey.texttitle}
+      input.form-control(type='text', id='text', name='text', placeholder='주관식')
+      | #{survey.longtexttitle}
+      textarea.form-control(id='longtext', rows='5', name='longtext', placeholder='긴 의견')
     
     hr
-    h3 Comment (#{survey.numReply})
+    h3 Reply (#{survey.numReply})
     table.table
       tr
-        th email
-        th content
+        th text
+        th longtext
         th time
       each reply in replys
         tr
-          td= reply.email
-          td= reply.content
+          td= reply.text
+          td= reply.longtext
           td= moment(reply.createdAt).format('YYYY/MM/DD')
     
     form.form-inline(action='/survey/' + survey._id + '/replys', method='POST')
+      //- .form-group
+      //-   input.replyselect(name='replyselect')
       .form-group
         label.sr-only(for='email') email
-        input.form-control(name='email', placeholder='email')
+        input.replytext.form-control(type='hidden', name='replytext', placeholder='text')
       .form-group
         label.sr-only(for='content') content
-        input.form-control(name='content', size=50, placeholder='content')
+        input.replylongtext.form-control(type='hidden', name='replylongtext', size=50, placeholder='longtext')
         //- input.form-control(name='content', type='radio', value='1',checked=(val===1))
         //- label 1
         //- select(name='content')
           //- option(value='aaa') AAA
           //- input(type='checkbox', name='content', value='1')
             //- label 운동
-      button.btn.btn-info 댓글저장
+      button.btn.btn-info 설문 저장
+      | 
+      button.valuetest.btn.btn-lg test
       
     hr
     a.btn.btn-default(href='/survey') 전체 목록 
     
-
-    //- p
-    //-   b by #{survey.number}
-    //-   | 
-    //-   span at #{moment(survey.createdAt).format('YYYY-MM-DD HH:mm:ss')} 
-    //-   | 
-    //-   | (조회수 #{survey.read})
-    //- p.well(style='white-space:pre;')= survey.content
-  
+    script(type='text/javascript').
+      //- $(".select").change
+      $(".valuetest").click(function(){ 
+        //- $(".replyselect").attr("value",$("#select").val());
+        $(".replytext").attr("value",$("#text").val());
+        $(".replylongtext").attr("value",$("#longtext").val());
+      });
