@@ -10,7 +10,7 @@ var flash = require ('connect-flash');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var configAuth = require('./config/auth');
- 
+
 var routes = require('./routes/index'),
     users = require('./routes/users'),
     survey = require('./routes/survey'),
