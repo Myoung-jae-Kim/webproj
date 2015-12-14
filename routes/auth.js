@@ -1,6 +1,6 @@
 module.exports = function(app, passport) {
   app.post('/signin', passport.authenticate('local-signin', {
-    successRedirect : '/Survey', // redirect to the secure profile section
+    successRedirect : '/survey', // redirect to the secure profile section
     failureRedirect : 'signin', // redirect back to the signup page if there is an error
     faulureFlash : true // allow flash messages
   }));
@@ -16,7 +16,7 @@ module.exports = function(app, passport) {
     }),
     function(req, res, next) {
       req.flash('success', '로그인 되었습니다.');
-      res.redirect('/Survey');
+      res.redirect('/survey');
     }
   );
 
