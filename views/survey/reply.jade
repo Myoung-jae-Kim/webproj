@@ -8,69 +8,76 @@ block content
     h3 설문 설명
     .well= survey.content
     h4 설문 조사 
-    div
-      | #{survey.selecttitle[0]}
-      p
-      input.select(type='radio', id='select', name='select',value='1')
-      | #{survey.select[0]}
-      input.select(type='radio', id='select', name='select',value='2')
-      | #{survey.select[1]}
-      input.select(type='radio', id='select', name='select',value='3')
-      | #{survey.select[2]}
-      input.select(type='radio', id='select', name='select',value='4')
-      | #{survey.select[3]}
-      input.select(type='radio', id='select', name='select',value='5')
-      | 기타
-      span
-        input.ect(type='text', name='ect')
-    div
-      | #{survey.selecttitle[1]}
-      p
-      input.select(type='radio', id='select2', name='select2',value='1')
-      | #{survey.select[5]}
-      input.select(type='radio', id='select2', name='select2',value='2')
-      | #{survey.select[6]}
-      input.select(type='radio', id='select2', name='select2',value='3')
-      | #{survey.select[7]}
-      input.select(type='radio', id='select2', name='select2',value='4')
-      | #{survey.select[8]}
-      input.select(type='radio', id='select2', name='select2',value='5')
-      | 기타
-      span
-        input.ect(type='text', name='ect2')
-    div
-      | #{survey.selecttitle[2]}
-      p
-      input.select(type='radio', id='select3', name='select3',value='1')
-      | #{survey.select[10]}
-      input.select(type='radio', id='select3', name='select3',value='2')
-      | #{survey.select[11]}
-      input.select(type='radio', id='select3', name='select3',value='3')
-      | #{survey.select[12]}
-      input.select(type='radio', id='select3', name='select3',value='4')
-      | #{survey.select[13]}
-      input.select(type='radio', id='select3', name='select3',value='5')
-      | 기타
-      span
-        input.ect(type='text', name='ect3')
-    div
-      | #{survey.selecttitle[3]}
-      p
-      input.select(type='radio', id='select4', name='select4',value='1')
-      | #{survey.select[15]}
-      input.select(type='radio', id='select4', name='select4',value='2')
-      | #{survey.select[16]}
-      input.select(type='radio', id='select4', name='select4',value='3')
-      | #{survey.select[17]}
-      input.select(type='radio', id='select4', name='select4',value='4')
-      | #{survey.select[18]}
-      input.select(type='radio', id='select4', name='select4',value='5')
-      | 기타
-      span
-        input.ect(type='text', name='ect4')
+    .form-group
+      div
+        | #{survey.selecttitle[0]}
+        p
+        input.select(type='radio', id='select', name='select',value='1')
+        | #{survey.select[0]}
+        input.select(type='radio', id='select', name='select',value='2')
+        | #{survey.select[1]}
+        input.select(type='radio', id='select', name='select',value='3')
+        | #{survey.select[2]}
+        input.select(type='radio', id='select', name='select',value='4')
+        | #{survey.select[3]}
+        input.select(type='radio', id='select', name='select',value='5')
+        | 기타
+        span
+          input.ect(type='text', name='ect')
+    .form-group
+      div
+        | #{survey.selecttitle[1]}
+        p
+        input.select(type='radio', id='select2', name='select2',value='1')
+        | #{survey.select[5]}
+        input.select(type='radio', id='select2', name='select2',value='2')
+        | #{survey.select[6]}
+        input.select(type='radio', id='select2', name='select2',value='3')
+        | #{survey.select[7]}
+        input.select(type='radio', id='select2', name='select2',value='4')
+        | #{survey.select[8]}
+        input.select(type='radio', id='select2', name='select2',value='5')
+        | 기타
+        span
+          input.ect(type='text', name='ect2')
+    .form-group      
+      div
+        | #{survey.selecttitle[2]}
+        p
+        input.select(type='radio', id='select3', name='select3',value='1')
+        | #{survey.select[10]}
+        input.select(type='radio', id='select3', name='select3',value='2')
+        | #{survey.select[11]}
+        input.select(type='radio', id='select3', name='select3',value='3')
+        | #{survey.select[12]}
+        input.select(type='radio', id='select3', name='select3',value='4')
+        | #{survey.select[13]}
+        input.select(type='radio', id='select3', name='select3',value='5')
+        | 기타
+        span
+          input.ect(type='text', name='ect3')
+    .form-group      
+      div
+        | #{survey.selecttitle[3]}
+        p
+        input.select(type='radio', id='select4', name='select4',value='1')
+        | #{survey.select[15]}
+        input.select(type='radio', id='select4', name='select4',value='2')
+        | #{survey.select[16]}
+        input.select(type='radio', id='select4', name='select4',value='3')
+        | #{survey.select[17]}
+        input.select(type='radio', id='select4', name='select4',value='4')
+        | #{survey.select[18]}
+        input.select(type='radio', id='select4', name='select4',value='5')
+        | 기타
+        span
+          input.ect(type='text', name='ect4')
+    .form-group      
       p
       | #{survey.texttitle}
       input.form-control(type='text', id='text', name='text', placeholder='주관식')
+    .form-group  
+      p
       | #{survey.longtexttitle}
       textarea.form-control(id='longtext', rows='5', name='longtext', placeholder='긴 의견')
     
