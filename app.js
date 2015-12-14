@@ -10,7 +10,7 @@ var flash = require ('connect-flash');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var configAuth = require('./config/auth');
-
+ 
 var routes = require('./routes/index'),
     users = require('./routes/users'),
     survey = require('./routes/survey'),
@@ -33,7 +33,7 @@ mongoose.connect('mongodb://MJKIM:kmj1026@ds049854.mongolab.com:49854/webp');
 mongoose.connection.on('error', console.log);
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

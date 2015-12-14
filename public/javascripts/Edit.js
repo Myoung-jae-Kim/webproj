@@ -19,17 +19,4 @@ $(document).ready(function(){
       $("ol").append("<div class='point'><li><span><input type='text'></span><div><input type='radio' id='select' name='select' value='1'> 1점<br><input type='radio' id='select' name='select' value='2'> 2점<br><input type='radio' id='select' name='select' value='3'> 3점<br><input type='radio' id='select' name='select' value='4'> 4점<br><input type='radio' id='select' name='select' value='5'> 5점<br></div></li></div><br>");
     }
   });
-
- // $("div").each(function() {
- //   if($("div").hasClass("choice")) {
- //    var choice = $(".choice").serializeArray();
- //    console.log(choice);
- //  } else if($("div").hasClass("text")) {
- //    var text = $(".text").serializeArray();
- //    console.log(text);
- //  } else if($("div").hasClass("longtext")) {
- //    var longtext = $(".longtext").serializeArray();
- //    console.log(longtext);
- //  }
- // });
 });
