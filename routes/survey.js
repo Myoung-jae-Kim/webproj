@@ -14,7 +14,7 @@ function needAuth(req, res, next) {
 }
 
 router.get('/', needAuth, function(req, res, next) {
-  res.render('survey');
+  res.render('/users/survey');
 });
 
 router.get('/create/:id', function(req, res, next) {
