@@ -40,7 +40,7 @@ module.exports = function(passport) {
   passport.use(new FacebookStrategy({
     clientID : '970030043067266',
     clientSecret : '4d79c58958ac0361b7c76de18a135663',
-    callbackURL : 'http://localhost:3000/auth/facebook/callback',
+    callbackURL : 'http://damp-thicket-3077.herokuapp.com/auth/facebook/callback',
     profileFields : ["emails", "displayName", "name", "photos"]
   }, function(token, refreshToken, profile, done) {
     console.log(profile);
